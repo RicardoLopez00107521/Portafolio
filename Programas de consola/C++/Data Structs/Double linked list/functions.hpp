@@ -70,6 +70,30 @@ Node* Double_linked_list::search_node(int data) {
     return searched_node;
 }
 
+void Double_linked_list::delete_node_in_list(int data) {
+    Node* node_to_delete = search_node(data);
+
+    if (node_to_delete != nullptr) {
+        if (node_to_delete->next == nullptr) {
+            node_to_delete->previous->next = nullptr;
+
+            node_to_delete->next = nullptr;
+            node_to_delete->previous = nullptr;
+            delete(node_to_delete);
+            
+        } else {
+            node_to_delete->previous->next = node_to_delete->next;
+            node_to_delete->next->previous = node_to_delete->previous;
+
+            node_to_delete->next = nullptr;
+            node_to_delete->previous = nullptr;
+            delete(node_to_delete);
+        }
+         
+    } else
+        cout << "The element not exist!\n";
+}
+
 void Double_linked_list::print_list_left_right() {
     Node* print_node = head->next;
 
@@ -87,6 +111,10 @@ void Double_linked_list::print_list_left_right() {
 Node* Double_linked_list::obtain_last_node() {
     Node* last_node = head->next;
 
+    if (last_node == nullptr) {
+        return last_node;
+    }
+    
     while (last_node->next != NULL) {
         last_node = last_node->next;
     }
@@ -96,9 +124,8 @@ Node* Double_linked_list::obtain_last_node() {
 
 void Double_linked_list::print_list_right_left() {
     Node* print_node = obtain_last_node();
-
-    if (head->next == NULL)
-    {
+    
+    if (print_node == nullptr) {
         cout << "The list is empty!" << endl;
     } else {
         while(print_node != head) {
