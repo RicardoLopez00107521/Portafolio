@@ -22,7 +22,7 @@ class Double_linked_list {
         void print_list_left_right();
         Node* obtain_last_node();
         void print_list_right_left();
-        //~Double_linked_list();
+        ~Double_linked_list();
 };
 
 Double_linked_list::Double_linked_list() {
@@ -145,4 +145,15 @@ void Double_linked_list::print_list_right_left() {
     }
 }
 
+Double_linked_list::~Double_linked_list() {
+    Node* current_node = head->next;
+    Node* next_node = nullptr;
+
+    while (current_node != nullptr) {
+        next_node = current_node->next;
+        delete(current_node);
+        current_node = next_node;
+    }
+    head->next = nullptr;
+}
 #endif

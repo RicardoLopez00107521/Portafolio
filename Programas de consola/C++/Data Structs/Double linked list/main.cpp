@@ -28,12 +28,17 @@ int main () {
     double_linked_list.print_list_right_left();
     cout << "\n";
 
-    double_linked_list.update_node_in_list(1,9);
+    double_linked_list.update_node_in_list(2,9);
     
     double_linked_list.print_list_left_right();    
     cout << "\n";
 
     double_linked_list.print_list_right_left();
+    cout << "\n";
+
+    double_linked_list.~Double_linked_list();
+
+    double_linked_list.print_list_left_right();    
     cout << "\n";
 
     return 0;
