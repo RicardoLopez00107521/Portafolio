@@ -21,4 +21,16 @@ class Simple_linked_list {
         //~Simple_linked_list();
 };
 
+Simple_linked_list::Simple_linked_list() {
+    head->data = NULL;
+    head->next = nullptr;
+}
+
+Node* Simple_linked_list::create_node(int data) {
+    Node* new_node = (Node*)malloc(sizeof(Node));
+
+    new_node->data = data;
+    new_node->next = nullptr;
+}
+
 #endif
