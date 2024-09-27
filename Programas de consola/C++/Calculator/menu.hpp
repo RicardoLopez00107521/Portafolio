@@ -21,31 +21,37 @@ void menu() {
         if (!validate_entry(option)) continue;
 
         switch (option) {
-        case 1:
+            case 1:
+                cout << "\nEscribe el primer numero entero: ";
+                if (!validate_entry(first_number)) break;
+                
+                cout << "Escribe el se numero entero: ";
+                if (!validate_entry(second_number)) break;
 
-            cout << "\nEscribe el primer numero entero: ";
-            if (!validate_entry(first_number)) break;
-            cout << "Escribe el se numero entero: ";
-            if (!validate_entry(second_number)) break;
+                cout << "The sum of " << first_number << " and " << second_number << " is: " << sum_two_numbers(first_number, second_number) << "\n" ;
+                break;
+            
+            case 2:
+                cout << "\nEscribe el primer numero entero: ";
+                if (!validate_entry(first_number)) break;
 
-            cout << "La suma de " << first_number << " y " << second_number << " es: " << sum_two_numbers(first_number, second_number) << "\n" ;
-            break;
-        
-        case 2:
-            cout<<"Implment rest fuction\n";
-            break;
+                cout << "Escribe el se numero entero: ";
+                if (!validate_entry(second_number)) break;
 
-        case 3:
-            cout<<"Implment multiply fuction\n";
-            break;
+                cout << "The substraction of " << first_number << " minus " << second_number << " is: " << rest_two_numbers(first_number, second_number) << "\n" ;
+                break;
 
-        case 4:
-            cout<<"Implment division fuction\n";
-            break;
+            case 3:
+                cout<<"Implment multiply fuction\n";
+                break;
 
-        default:
-            cout<<"Invalid option, try again!.\n";
-            break;
+            case 4:
+                cout<<"Implment division fuction\n";
+                break;
+
+            default:
+                cout<<"Invalid option, try again!.\n";
+                break;
         }
     } while (option !=5);
     cout << "\nGood bye!";
