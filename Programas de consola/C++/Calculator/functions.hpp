@@ -13,6 +13,10 @@ int rest_two_numbers(int first_number, int second_number) {
     return first_number - second_number;
 }
 
+int multiply_two_numbers(int first_number, int second_number) {
+    return first_number * second_number;
+}
+
 bool validate_entry(int& entry) {
     if (!(cin >> entry)) {
         cout << "Invalid entry, try again!.\n";
