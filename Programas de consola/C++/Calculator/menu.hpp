@@ -52,7 +52,13 @@ void menu() {
                 break;
 
             case 4:
-                cout<<"Implment division fuction\n";
+                cout << "\nWrite the dividen number: ";
+                if (!validate_entry(first_number)) break;
+
+                cout << "Write the divider number: ";
+                if (!validate_entry(second_number)) break;
+
+                cout << "The diviton of " << first_number << " with " << second_number << " is: " << divide_two_numbers(first_number, second_number) << "\n" ;
                 break;
 
             default:
@@ -60,6 +66,7 @@ void menu() {
                 break;
         }
     } while (option !=5);
+
     cout << "\nGood bye!";
 }
 
