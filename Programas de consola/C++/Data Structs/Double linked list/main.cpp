@@ -17,5 +17,8 @@ int main () {
     double_linked_list.print_list_left_right();
     cout << "\n";
     double_linked_list.print_list_right_left();
+    cout << "\n";
+
+    double_linked_list.search_node(4);
     return 0;
 }

@@ -61,6 +61,15 @@ void Double_linked_list::insert_node_in_list(int data) {
     }
 }
 
+Node* Double_linked_list::search_node(int data) {
+    Node* searched_node = head->next;
+
+    while (searched_node != nullptr && searched_node->data != data) {
+        searched_node = searched_node->next;
+    }
+    return searched_node;
+}
+
 void Double_linked_list::print_list_left_right() {
     Node* print_node = head->next;
 
