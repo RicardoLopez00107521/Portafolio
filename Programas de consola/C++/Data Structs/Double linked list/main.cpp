@@ -22,8 +22,19 @@ int main () {
 
     double_linked_list.delete_node_in_list(1);
     
-    double_linked_list.print_list_left_right();    
+    double_linked_list.print_list_left_right(); 
+    cout << "\n";
+
     double_linked_list.print_list_right_left();
+    cout << "\n";
+
+    double_linked_list.update_node_in_list(1,9);
+    
+    double_linked_list.print_list_left_right();    
+    cout << "\n";
+
+    double_linked_list.print_list_right_left();
+    cout << "\n";
 
     return 0;
 }

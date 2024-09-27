@@ -14,11 +14,11 @@ class Double_linked_list {
 
     public:
         Double_linked_list();
-        Node* create_node(int data);
-        void insert_node_in_list(int data);
-        Node* search_node(int data);
-        void update_node_in_list(int data, int new_data);
-        void delete_node_in_list(int data);
+        Node* create_node(int);
+        void insert_node_in_list(int);
+        Node* search_node(int);
+        void update_node_in_list(int, int);
+        void delete_node_in_list(int);
         void print_list_left_right();
         Node* obtain_last_node();
         void print_list_right_left();
@@ -68,6 +68,16 @@ Node* Double_linked_list::search_node(int data) {
         searched_node = searched_node->next;
     }
     return searched_node;
+}
+
+void Double_linked_list::update_node_in_list(int data, int new_data) {
+    Node* node_to_update = search_node(data);
+
+    if (node_to_update != nullptr) {
+        delete_node_in_list(data);
+        insert_node_in_list(new_data);
+    } else
+        cout << "The element not exist!" << endl;
 }
 
 void Double_linked_list::delete_node_in_list(int data) {
