@@ -22,27 +22,33 @@ void menu() {
 
         switch (option) {
             case 1:
-                cout << "\nEscribe el primer numero entero: ";
+                cout << "\nWrite the first number: ";
                 if (!validate_entry(first_number)) break;
                 
-                cout << "Escribe el se numero entero: ";
+                cout << "Write the second number: ";
                 if (!validate_entry(second_number)) break;
 
                 cout << "The sum of " << first_number << " and " << second_number << " is: " << sum_two_numbers(first_number, second_number) << "\n" ;
                 break;
             
             case 2:
-                cout << "\nEscribe el primer numero entero: ";
+                cout << "\nWrite the first number: ";
                 if (!validate_entry(first_number)) break;
 
-                cout << "Escribe el se numero entero: ";
+                cout << "Write the second number: ";
                 if (!validate_entry(second_number)) break;
 
                 cout << "The substraction of " << first_number << " minus " << second_number << " is: " << rest_two_numbers(first_number, second_number) << "\n" ;
                 break;
 
             case 3:
-                cout<<"Implment multiply fuction\n";
+                cout << "\nWrite the first number: ";
+                if (!validate_entry(first_number)) break;
+
+                cout << "Write the second number: ";
+                if (!validate_entry(second_number)) break;
+
+                cout << "The product of " << first_number << " with " << second_number << " is: " << multiply_two_numbers(first_number, second_number) << "\n" ;
                 break;
 
             case 4:
