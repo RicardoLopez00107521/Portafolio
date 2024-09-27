@@ -20,7 +20,7 @@ class Simple_linked_list {
         void update_node_in_list(int data, int new_data);
         void delete_node_in_list(int data);
         void print_list();
-        //~Simple_linked_list();
+        ~Simple_linked_list();
 };
 
 Simple_linked_list::Simple_linked_list() {
@@ -106,6 +106,18 @@ void Simple_linked_list::print_list() {
             print_node = print_node->next;
         }
     }  
+}
+
+Simple_linked_list::~Simple_linked_list() {
+    Node* current_node = head->next;
+    Node* next_node = nullptr;
+
+    while (current_node != nullptr) {
+        next_node = current_node->next;
+        delete(current_node);
+        current_node = next_node;
+    }
+    head->next = nullptr;
 }
 
 #endif

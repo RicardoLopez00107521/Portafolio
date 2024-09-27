@@ -24,6 +24,10 @@ int main () {
     simple_linked_list.delete_node_in_list(8);
 
     simple_linked_list.print_list();
+    cout << "\n";
+
+    simple_linked_list.~Simple_linked_list();
+    simple_linked_list.print_list();
 
     return 0;
 }
