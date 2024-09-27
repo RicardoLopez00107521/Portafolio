@@ -16,6 +16,7 @@ class Simple_linked_list {
         Node* create_node(int data);
         void insert_node_in_list(int data);
         Node* search_node(int data);
+        Node* search_previous_node(int data);
         void update_node_in_list(int data, int new_data);
         void delete_node_in_list(int data);
         void print_list();
@@ -52,9 +53,18 @@ void Simple_linked_list::insert_node_in_list(int data) {
 
 Node* Simple_linked_list::search_node(int data) {
     Node* searched_node = head->next;
-    Node* return_node = searched_node->next;
 
     while (searched_node != nullptr && searched_node->data != data) {
+        searched_node = searched_node->next;
+    }
+
+    return searched_node;    
+}
+
+Node* Simple_linked_list::search_previous_node(int data) {
+    Node* searched_node = head;
+
+    while (searched_node != nullptr && searched_node->next->data != data) {
         searched_node = searched_node->next;
     }
 
@@ -66,6 +76,20 @@ void Simple_linked_list::update_node_in_list(int data, int new_data) {
 
     if (node_to_update != nullptr) {
         node_to_update->data = new_data;
+    } else
+        cout << "The element not exist!\n";
+}
+
+void Simple_linked_list::delete_node_in_list(int data) {
+    Node* node_to_delete = search_node(data);
+
+    if (node_to_delete != nullptr) {
+        Node* previous_node = search_previous_node(data);
+
+        previous_node->next = node_to_delete->next;
+        node_to_delete->next = nullptr;
+        delete(node_to_delete);
+        
     } else
         cout << "The element not exist!\n";
 }

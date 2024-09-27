@@ -17,6 +17,12 @@ int main () {
     cout << "\n";
 
     simple_linked_list.update_node_in_list(3, 5);
+
+    simple_linked_list.print_list();
+    cout << "\n";
+
+    simple_linked_list.delete_node_in_list(8);
+
     simple_linked_list.print_list();
 
     return 0;
