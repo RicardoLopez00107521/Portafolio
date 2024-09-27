@@ -1,10 +1,14 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
+#include "functions.hpp"
+
 using namespace std; 
 
 void menu() {
-    int option;
+
+    int option, first_number = 0, second_number = 0; 
+
     do {
         cout<<"\t\n ****** Menu ******\n";
         cout<<"1. Sum two numbers\n";
@@ -14,16 +18,17 @@ void menu() {
         cout<<"5. Exit\n";
         cout << "Choose operation: ";
 
-        if (!(cin >> option)) {
-            cout << "Invalid option, try again!.\n";
-            cin.clear(); 
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-            continue; 
-        }
+        if (!validate_entry(option)) continue;
 
         switch (option) {
         case 1:
-            cout<<"Implment sum fuction\n";
+
+            cout << "\nEscribe el primer numero entero: ";
+            if (!validate_entry(first_number)) break;
+            cout << "Escribe el se numero entero: ";
+            if (!validate_entry(second_number)) break;
+
+            cout << "La suma de " << first_number << " y " << second_number << " es: " << sum_two_numbers(first_number, second_number) << "\n" ;
             break;
         
         case 2:
