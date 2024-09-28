@@ -65,4 +65,15 @@ void Circular_simple_linked_list::print_list() {
     }
     cout << print_node->next->data;
 }
+
+Node* Circular_simple_linked_list::search_node(int data) {
+    Node* searched_node = head->next;
+
+    while (searched_node != head && searched_node->data != data) {
+        searched_node = searched_node->next;
+    }    
+
+    return searched_node;   
+}
+
 #endif
