@@ -27,7 +27,7 @@ Circular_simple_linked_list::Circular_simple_linked_list() {
     head = new Node();
 
     head->data = 0;
-    head->next = nullptr;
+    head->next = head;
 }
 
 Node* Circular_simple_linked_list::create_node(int data) {
@@ -39,4 +39,30 @@ Node* Circular_simple_linked_list::create_node(int data) {
     return new_node;
 }
 
+void Circular_simple_linked_list::insert_node_in_list(int data) {
+    Node* node_to_insert = create_node(data);
+    Node* current_node = head;
+
+    while (current_node->next != head && current_node->next->data < node_to_insert->data) {
+        current_node = current_node->next;
+    }
+    
+    node_to_insert->next = current_node->next;
+    current_node->next = node_to_insert;
+}
+
+void Circular_simple_linked_list::print_list() {
+    Node* print_node = head->next;
+
+    if (head->next == NULL)
+    {
+        cout << "The list is empty!" << endl;
+    } else {
+        while(print_node != head) {
+            cout << print_node->data << " ";
+            print_node = print_node->next;
+        }
+    }
+    cout << print_node->next->data;
+}
 #endif
