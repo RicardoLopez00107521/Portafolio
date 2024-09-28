@@ -18,7 +18,10 @@ int main() {
     circular_simple_linked_list.print_list();
     cout << "\n";
 
-    circular_simple_linked_list.search_previous_node(7);
+    circular_simple_linked_list.delete_node_in_list(1);
+
+    circular_simple_linked_list.print_list();
+    cout << "\n";
 
     return 0;
 }

@@ -54,7 +54,7 @@ void Circular_simple_linked_list::insert_node_in_list(int data) {
 void Circular_simple_linked_list::print_list() {
     Node* print_node = head->next;
 
-    if (head->next == NULL)
+    if (head->next == head)
     {
         cout << "The list is empty!" << endl;
     } else {
@@ -62,8 +62,8 @@ void Circular_simple_linked_list::print_list() {
             cout << print_node->data << " ";
             print_node = print_node->next;
         }
+        cout << print_node->next->data;
     }
-    cout << print_node->next->data;
 }
 
 Node* Circular_simple_linked_list::search_node(int data) {
@@ -89,10 +89,7 @@ Node* Circular_simple_linked_list::search_previous_node(int data) {
 
         if (searched_node == head) {
             return nullptr;
-        } else {
-            cout << aux_node->data;
-            return aux_node;
-        }
+        } else return aux_node;
           
     } else {
             while (searched_node->next->data != data) {
@@ -101,6 +98,27 @@ Node* Circular_simple_linked_list::search_previous_node(int data) {
             } 
             return aux_node;
         }   
+}
+
+void Circular_simple_linked_list::delete_node_in_list(int data) {
+    Node* node_to_delete = search_node(data);
+
+    if (node_to_delete != head) {
+        Node* previous_node = search_previous_node(data);
+
+        if (previous_node->next == head) {
+            previous_node->next->next = node_to_delete->next;
+            node_to_delete->next = nullptr;
+            delete(node_to_delete);
+            
+        } else {
+            previous_node->next = node_to_delete->next;
+            node_to_delete->next = nullptr;
+            delete(node_to_delete);
+        }
+
+    } else 
+        cout << "The element not exist!\n";
 }
 
 #endif
