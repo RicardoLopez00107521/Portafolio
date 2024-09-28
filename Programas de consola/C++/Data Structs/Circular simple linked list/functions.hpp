@@ -3,7 +3,7 @@
 
 struct Node
 {
-    int dato;
+    int data;
     Node* next;
 };
 
@@ -22,5 +22,12 @@ class Circular_simple_linked_list {
         void print_list();
         //~Circular_simple_linked_list();
 };
+
+Circular_simple_linked_list::Circular_simple_linked_list() {
+    head = new Node();
+
+    head->data = 0;
+    head->next = nullptr;
+}
 
 #endif
