@@ -20,7 +20,6 @@ class Circular_simple_linked_list {
         void update_node_in_list(int, int);
         void delete_node_in_list(int);
         void print_list();
-        //~Circular_simple_linked_list();
 };
 
 Circular_simple_linked_list::Circular_simple_linked_list() {
