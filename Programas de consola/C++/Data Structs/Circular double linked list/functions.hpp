@@ -25,4 +25,12 @@ class Circular_double_linked_list
         //~Circular_double_linked_list();
 };
 
+Circular_double_linked_list::Circular_double_linked_list() {
+    head = new Node();
+
+    head->data = 0;
+    head->next = head;
+    head->previous = head;
+}
+
 #endif
