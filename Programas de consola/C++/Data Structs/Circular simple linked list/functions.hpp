@@ -100,6 +100,16 @@ Node* Circular_simple_linked_list::search_previous_node(int data) {
         }   
 }
 
+void Circular_simple_linked_list::update_node_in_list(int data, int new_data) {
+    Node* node_to_update = search_node(data);
+
+    if (node_to_update != head) {
+        delete_node_in_list(data);
+        insert_node_in_list(new_data);
+    } else
+        cout << "The element not exist!" << endl;
+}
+
 void Circular_simple_linked_list::delete_node_in_list(int data) {
     Node* node_to_delete = search_node(data);
 

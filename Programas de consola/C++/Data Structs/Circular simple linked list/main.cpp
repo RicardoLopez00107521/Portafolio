@@ -23,5 +23,10 @@ int main() {
     circular_simple_linked_list.print_list();
     cout << "\n";
 
+    circular_simple_linked_list.update_node_in_list(4, 12);
+
+    circular_simple_linked_list.print_list();
+    cout << "\n";
+
     return 0;
 }
