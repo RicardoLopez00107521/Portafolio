@@ -76,4 +76,31 @@ Node* Circular_simple_linked_list::search_node(int data) {
     return searched_node;   
 }
 
+Node* Circular_simple_linked_list::search_previous_node(int data) {
+    Node* searched_node = head->next;
+    Node* aux_node = nullptr;
+
+    if (searched_node->data != data) {
+
+        while (searched_node != head && searched_node->data != data) {
+            aux_node = searched_node;
+            searched_node = searched_node->next;
+        } 
+
+        if (searched_node == head) {
+            return nullptr;
+        } else {
+            cout << aux_node->data;
+            return aux_node;
+        }
+          
+    } else {
+            while (searched_node->next->data != data) {
+                aux_node = searched_node;
+                searched_node = searched_node->next;
+            } 
+            return aux_node;
+        }   
+}
+
 #endif
