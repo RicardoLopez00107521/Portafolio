@@ -33,4 +33,12 @@ Circular_double_linked_list::Circular_double_linked_list() {
     head->previous = head;
 }
 
+Node* Circular_double_linked_list::create_node(int data) {
+    Node* new_node = new Node();
+
+    new_node->data = data;
+    new_node->next = nullptr;
+    new_node->previous = nullptr;
+}
+
 #endif
