@@ -17,5 +17,7 @@ int main () {
     circular_double_linked_list.print_list_left_right();
     circular_double_linked_list.print_list_right_left();
 
+    circular_double_linked_list.search_node(0);
+
     return 0; 
 }

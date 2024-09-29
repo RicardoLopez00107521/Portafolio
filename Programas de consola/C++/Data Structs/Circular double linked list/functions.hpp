@@ -91,4 +91,14 @@ void Circular_double_linked_list::print_list_right_left() {
     }
 }
 
+Node* Circular_double_linked_list::search_node(int data) {
+    Node* searched_node = head->next;
+
+    while (searched_node != head && searched_node->data != data) {
+        searched_node = searched_node->next;
+    }
+
+    return searched_node;
+}
+
 #endif
