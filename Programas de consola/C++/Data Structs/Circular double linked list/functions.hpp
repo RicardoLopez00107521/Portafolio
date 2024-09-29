@@ -101,4 +101,32 @@ Node* Circular_double_linked_list::search_node(int data) {
     return searched_node;
 }
 
+void Circular_double_linked_list::delete_node_in_list(int data) {
+    Node* node_to_delete = search_node(data);
+    Node* previous_node = node_to_delete->previous;
+
+    if (node_to_delete != head) {
+        
+        if (previous_node->next == head) {
+            previous_node->next->next = node_to_delete->next; //2
+            node_to_delete->next->previous = previous_node;
+
+            node_to_delete->next = nullptr;
+            node_to_delete->previous = nullptr;
+
+            delete(node_to_delete);
+
+        } else {
+            previous_node->next = node_to_delete->next;
+            previous_node->next->previous = previous_node;
+            
+            node_to_delete->next = nullptr;
+            node_to_delete->previous = nullptr;
+
+            delete(node_to_delete);
+        }
+    } else
+        cout << "The element not exist!\n";
+}
+
 #endif
