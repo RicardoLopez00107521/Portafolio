@@ -21,7 +21,6 @@ class Circular_double_linked_list
         void delete_node_in_list(int);
         void print_list_left_right();
         void print_list_right_left();
-        //~Circular_double_linked_list();
 };
 
 Circular_double_linked_list::Circular_double_linked_list() {
@@ -101,6 +100,16 @@ Node* Circular_double_linked_list::search_node(int data) {
     return searched_node;
 }
 
+void Circular_double_linked_list::update_node_in_list(int data, int new_data) {
+    Node* node_to_update = search_node(data);
+
+    if (node_to_update != head) {
+        delete_node_in_list(data);
+        insert_node_in_list(new_data);
+    } else
+        cout << "The element not exist!" << endl;
+}
+
 void Circular_double_linked_list::delete_node_in_list(int data) {
     Node* node_to_delete = search_node(data);
     Node* previous_node = node_to_delete->previous;
@@ -108,7 +117,7 @@ void Circular_double_linked_list::delete_node_in_list(int data) {
     if (node_to_delete != head) {
         
         if (previous_node->next == head) {
-            previous_node->next->next = node_to_delete->next; //2
+            previous_node->next->next = node_to_delete->next; 
             node_to_delete->next->previous = previous_node;
 
             node_to_delete->next = nullptr;
