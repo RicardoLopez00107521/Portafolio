@@ -24,3 +24,10 @@ void swap(int& a, int& b) {
     a = b;
     b = temp;
 }
+
+void print_array() {
+    for (int i = 0; i < 20; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
