@@ -1,13 +1,22 @@
 #include <iostream>
+#include <vector>
 
 using namespace std; 
 
-void merge_sort(int&, int l, int mid, int r);
-void merge();
+void merge_sort(vector<int>&, int l, int r);
+void merge(vector<int>&, int l, int mid, int r);
 void print_array(); 
 
 int main() {
-    int arr[20] = {34, 12, 7, 23, 45, 9, 78, 56, 3, 19, 88, 14, 67, 2, 41, 5, 90, 32, 11, 54};
+    vector<int> arr;
+    arr.push_back(7);
+    arr.push_back(8);
+    arr.push_back(9);
+    arr.push_back(10);
+    arr.push_back(11);
+    arr.push_back(3);
+    arr.push_back(6);
+    arr.push_back(8);
 
     cout << "Original array" << endl;
     print_array();
@@ -18,7 +27,7 @@ int main() {
     return 0;
 }
 
-void merge_sort(int& arr, int l, int mid, int r) {
+void merge_sort(vector<int>& arr, int l, int r) {
     if (l >= r) return;
 
     int mid = (l + r) / 2;
