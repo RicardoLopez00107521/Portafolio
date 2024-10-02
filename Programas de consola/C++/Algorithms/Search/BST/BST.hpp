@@ -13,13 +13,14 @@ class BST {
         Node* create_node(int);
         Node* insert_implementation(Node*, int);
         Node* search_implementation(Node*, int);
+        Node* get_predecessor_implementation(Node*, int);
         void print_in_order(Node*);
 
     public:
         BST();
         void insert_element(int);
         void search_element(int);
-        Node* get_succesor(int);
+        void get_predecessor(int);
         void delete_element(int);
         void print();
         
@@ -61,7 +62,7 @@ Node* BST::insert_implementation(Node* current_node, int data) {
         current_node->right = insert_implementation(current_node->right, data);  
 }
 
-void BST::print(){
+void BST::print() {
     print_in_order(root);
 }
 
@@ -101,6 +102,25 @@ Node* BST::search_implementation(Node* current_node, int data) {
 
     else
         return search_implementation(current_node->right, data);
+}
+
+Node* BST::get_predecessor_implementation(Node* current_node, int data) {
+    
+    if (current_node->left->data == data || current_node->right->data == data) {
+        return current_node;
+    }
+    
+    if (data < current_node->data) { 
+        get_predecessor_implementation(current_node->left, data);
+    }
+
+    else {
+        get_predecessor_implementation(current_node->right, data);
+    }
+}
+
+void BST::get_predecessor(int data) {
+    Node* sucessor = get_predecessor_implementation(root, data);
 }
 
 #endif
