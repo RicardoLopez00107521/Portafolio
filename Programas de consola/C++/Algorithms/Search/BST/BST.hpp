@@ -14,12 +14,10 @@ class BST {
         Node* insert_implementation(Node*, int);
         Node* search_implementation(Node*, int);
         Node* get_predecessor_implementation(Node*, int);
-        Node* max_value_of_left_tree(Node*);
         void print_in_order(Node*);
 
     public:
         BST();
-        void algo();
         void insert_element(int);
         void search_element(int);
         void get_predecessor(int);
@@ -128,68 +126,6 @@ Node* BST::get_predecessor_implementation(Node* current_node, int data) {
 
 void BST::get_predecessor(int data) {
     Node* predecessor = get_predecessor_implementation(root, data);
-}
-
-Node* BST::max_value_of_left_tree(Node* root) {
-    while (root->right != nullptr) {
-        root = root->right;
-    }
-    return root;
-}
-
-void BST::delete_element(int data) {
-    Node* node_to_delete = search_implementation(root, data);
-    Node* previous_node = get_predecessor_implementation(root, data);
-
-    if (node_to_delete == NULL) { 
-        cout << "The element doesn't exist!" << endl;
-    } 
-
-    else {
-
-        if (node_to_delete->left == nullptr && node_to_delete->right == nullptr) { // Case 1
-            
-            if (previous_node->left == node_to_delete) 
-                previous_node->left = nullptr;
-            else
-                previous_node->right = nullptr;
-
-            delete(node_to_delete);           
-        }
-        
-        
-        else if (node_to_delete->left == nullptr) { // Case 2.1
-            if (node_to_delete == previous_node->left) {
-                previous_node->left = node_to_delete->right;
-                node_to_delete->right = nullptr;
-            }
-            else
-                previous_node->right = node_to_delete->right;
-            
-            delete(node_to_delete);
-        }
-
-        else if (node_to_delete->right == nullptr) { // Case 2.2
-            if (node_to_delete == previous_node->left) {
-                previous_node->left = node_to_delete->left;
-                node_to_delete->left = nullptr;
-            }
-            else
-                previous_node->left = node_to_delete->right;
-                node_to_delete->right = nullptr;
-            
-            delete(node_to_delete);
-        }
-
-        else { // Case 3 tiene dos hijos
-            Node* max_of_left_tree = max_value_of_left_tree(node_to_delete);
-            Node* previous_of_max = get_predecessor_implementation(max_of_left_tree, max_of_left_tree->data);
-        }
-    }  
-}
-
-void BST::algo() {
-    max_value_of_left_tree(root->left);
 }
 
 #endif
