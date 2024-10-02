@@ -18,5 +18,9 @@ int main() {
     bst.insert_element(2);
     bst.print();
 
+    cout << endl;
+
+    bst.search_element(0);
+
     return 0;
 }

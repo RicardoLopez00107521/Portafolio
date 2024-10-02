@@ -12,12 +12,13 @@ class BST {
         Node* root;
         Node* create_node(int);
         Node* insert_implementation(Node*, int);
+        Node* search_implementation(Node*, int);
         void print_in_order(Node*);
 
     public:
         BST();
         void insert_element(int);
-        Node* search_element(int);
+        void search_element(int);
         Node* get_succesor(int);
         void delete_element(int);
         void print();
@@ -77,5 +78,29 @@ void BST::print_in_order(Node* print_node) {
     }  
 }
 
+void BST::search_element(int data) {
+    if (root == NULL) 
+        cout << "The tree is empty!" << endl;
+
+    else {
+        Node* searched_node = search_implementation(root, data);
+
+        if (searched_node == NULL) 
+            cout << "The element doesn't exist!" << endl;
+
+        else
+            cout << "Element founded: " << searched_node->data;
+    }
+}
+
+Node* BST::search_implementation(Node* current_node, int data) {
+    if (current_node == NULL || current_node->data == data) return current_node;
+    
+    if (data < current_node->data) 
+        return search_implementation(current_node->left, data);
+
+    else
+        return search_implementation(current_node->right, data);
+}
 
 #endif
