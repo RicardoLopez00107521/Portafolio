@@ -14,6 +14,8 @@ class BST {
         Node* insert_implementation(Node*, int);
         Node* search_implementation(Node*, int);
         Node* get_predecessor_implementation(Node*, int);
+        Node* get_successor(Node*);
+        Node* delete_element_implementation(Node*,int);
         void print_in_order(Node*);
 
     public:
@@ -126,6 +128,53 @@ Node* BST::get_predecessor_implementation(Node* current_node, int data) {
 
 void BST::get_predecessor(int data) {
     Node* predecessor = get_predecessor_implementation(root, data);
+}
+
+Node* BST::get_successor(Node* current_node) {
+    current_node = current_node->right;
+
+    while (current_node != NULL && current_node->left != NULL)
+        current_node = current_node->left;
+
+    return current_node;
+}
+
+void BST::delete_element(int data) {
+    delete_element_implementation(root, data);
+}
+
+Node* BST::delete_element_implementation(Node* current_node, int data) {
+    if (current_node == NULL)
+        return current_node;
+
+    if (current_node->data > data){
+        current_node->left = delete_element_implementation(current_node->left, data);
+        cout << current_node->left->data << endl; 
+    }
+    else if (current_node->data < data) {
+        root->right = delete_element_implementation(current_node->right, data);
+        cout << current_node->right->data << endl;
+    }
+
+    else {
+        if (current_node->left == NULL) {
+            Node* temp = current_node->right;
+            delete current_node;
+            return temp;
+        }
+
+        if (current_node->right == NULL) {
+            Node* temp = current_node->left;
+            delete current_node;
+            return temp;
+        }
+
+        Node* successor = get_successor(current_node);
+        current_node->data = successor->data;
+        current_node->right = delete_element_implementation(current_node->right, successor->data);
+    }
+
+    return current_node;
 }
 
 #endif

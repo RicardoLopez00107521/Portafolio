@@ -29,10 +29,11 @@ int main() {
     bst.insert_element(47);
     bst.insert_element(52);
     
+    bst.print();
+    cout << endl;
 
-    
-
-    bst.algo();
+    bst.delete_element(18);
+    bst.print();
 
     return 0;
 }
