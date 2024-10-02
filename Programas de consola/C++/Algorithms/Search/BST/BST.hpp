@@ -4,7 +4,7 @@
 struct Node {
     int data;
     Node* left;
-    Node* riight;
+    Node* right;
 };
 
 class BST {
@@ -33,21 +33,31 @@ Node* BST::create_node(int data) {
 
     new_node->data = data;
     new_node->left = nullptr;
-    new_node->riight = nullptr;
+    new_node->right = nullptr;
 }
 
 void BST::insert_element(int data) {
-    insert_implementation(root, data);
+    if (root == NULL) { // If the root doesn't exist, create!
+        root = create_node(data);
+    } else 
+        insert_implementation(root, data);
 }
 
 Node* BST::insert_implementation(Node* current_node, int data) {
+
     if (current_node == NULL) {
-        return root = create_node(data);
+        return create_node(data);
     }
 
     if (current_node->data == data) {
         return current_node;
     }
+
+    if (data < current_node->data) 
+        current_node->left = insert_implementation(current_node->left, data);
+
+    else 
+        current_node->right = insert_implementation(current_node->right, data);  
 }
 
 void BST::print(){
@@ -55,15 +65,16 @@ void BST::print(){
 }
 
 void BST::print_in_order(Node* print_node) {
+    
     if (root == NULL) {
         cout << "The tree is empty!" << endl;
     } else {
         if (print_node != NULL) {
             print_in_order(print_node->left);
             cout << print_node->data << " ";
-            print_in_order(print_node->riight);
+            print_in_order(print_node->right);
         }
-    }     
+    }  
 }
 
 
