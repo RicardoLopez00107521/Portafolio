@@ -1,0 +1,349 @@
+--****************************************************
+-- Bases de datos: Base de datos de Proyecto final POO// BD
+-- Autor: Grupo 6 
+--****************************************************
+
+CREATE DATABASE BINAES
+GO
+USE BINAES
+GO
+
+--TABLAS--
+CREATE TABLE EVENTO(
+    id INT PRIMARY KEY,
+    titulo VARCHAR(50),
+    asistencia VARCHAR(50),
+	fecha_inicio VARCHAR(50),
+	hora_inicio VARCHAR(50),
+	fecha_finalizacion VARCHAR(50),
+	hora_finalizacion VARCHAR(50),
+    id_area INT
+);
+
+CREATE TABLE OBJETIVOXEVENTO(
+    id INT PRIMARY KEY,
+    objetivo VARCHAR(50),
+    id_evento INT
+);
+
+CREATE TABLE AREA(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    descripcion VARCHAR(50),
+    horario VARCHAR(50),
+    id_responsable INT NOT NULL,
+    id_piso INT NOT NULL
+);
+
+CREATE TABLE RESPONSABLE(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+CREATE TABLE PISO(
+    id INT PRIMARY KEY,
+    piso INT
+)
+
+CREATE TABLE INGRESA(
+	id INT PRIMARY KEY IDENTITY(1,1),
+    id_area INT NOT NULL, --FK
+    codigo_usuario INT NOT NULL, --FK
+    fecha VARCHAR(50),
+	hora VARCHAR(50)
+)
+
+CREATE TABLE ABANDONA(
+	id INT PRIMARY KEY IDENTITY(1,1),
+    id_area INT NOT NULL,--FK
+    codigo_usuario INT NOT NULL, --FK
+    fecha VARCHAR(50),
+	hora VARCHAR(50)
+)
+
+CREATE TABLE USUARIO(
+    codigo INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    direccion VARCHAR(75),
+    telefono VARCHAR (12),
+    correo_electronico VARCHAR(50),
+    id_ocupacion INT,
+    id_institucion INT
+);
+
+CREATE TABLE OCUPACION(
+    id INT PRIMARY KEY,
+    ocupacion VARCHAR(50)
+);
+
+CREATE TABLE INSTITUCION(
+    id INT PRIMARY KEY,
+    institucion VARCHAR(50)
+);
+
+CREATE TABLE PRESTAMO(
+	id INT PRIMARY KEY IDENTITY(1,1),
+    codigo_usuario INT NOT NULL, ---FK
+    id_ejemplar INT NOT NULL, ---FK
+    fecha_hora_efectuacion VARCHAR(50),
+    fecha_hora_devolucion VARCHAR(50)
+);
+
+CREATE TABLE RESERVA(
+	id INT PRIMARY KEY IDENTITY(1,1),
+    codigo_usuario INT NOT NULL, --FK
+    id_ejemplar INT NOT NULL, --FK
+    fecha_hora_realizacion VARCHAR(50),
+    fecha_hora_efectuacion VARCHAR(50),
+    fecha_hora_devolucion VARCHAR(50)
+);
+
+CREATE TABLE EJEMPLAR(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    fecha_publicacion VARCHAR(50),
+    id_coleccion INT,
+    id_editorial INT,
+    id_formato INT,
+    id_idioma INT
+);
+
+CREATE TABLE ETIQUETAXEJEMPLAR(
+    id INT PRIMARY KEY,
+    etiqueta VARCHAR(50),
+    id_ejemplar INT NOT NULL
+);
+
+CREATE TABLE AUTORXEJEMPLAR(
+    id INT PRIMARY KEY,
+    autor VARCHAR(50),
+    id_ejemplar INT NOT NULL
+);
+
+CREATE TABLE PALABRAS_CLAVEXEJEMPLAR(
+    id INT PRIMARY KEY,
+    palabra_clave VARCHAR(50),
+    id_ejemplar INT NOT NULL
+);
+
+CREATE TABLE EDITORIAL(
+    id INT PRIMARY KEY,
+    editorial VARCHAR(50)
+);
+
+CREATE TABLE FORMATO(
+    id INT PRIMARY KEY,
+    formato VARCHAR(50)
+);
+
+CREATE TABLE IDIOMA(
+    id INT PRIMARY KEY,
+    idioma VARCHAR(50)
+);
+
+CREATE TABLE COLECCION(
+    id INT PRIMARY KEY,
+    nombre_coleccion VARCHAR(75),
+    id_tipo INT,
+    id_genero INT
+);
+
+CREATE TABLE TIPO(
+    id INT PRIMARY KEY,
+    tipo VARCHAR(50)
+);
+
+CREATE TABLE GENERO(
+    id INT PRIMARY KEY,
+    genero VARCHAR(50)
+);
+
+--Definiendo FK DE TABLAS
+ALTER TABLE INGRESA ADD FOREIGN KEY(id_area) REFERENCES AREA(id);
+ALTER TABLE INGRESA ADD FOREIGN KEY(codigo_usuario) REFERENCES USUARIO(codigo);
+ALTER TABLE ABANDONA ADD FOREIGN KEY(id_area) REFERENCES AREA(id);
+ALTER TABLE ABANDONA ADD FOREIGN KEY(codigo_usuario) REFERENCES USUARIO(codigo);
+ALTER TABLE PRESTAMO ADD FOREIGN KEY(codigo_usuario) REFERENCES USUARIO(codigo);
+ALTER TABLE PRESTAMO ADD FOREIGN KEY(id_ejemplar) REFERENCES EJEMPLAR(id);
+ALTER TABLE RESERVA ADD FOREIGN KEY(codigo_usuario) REFERENCES USUARIO(codigo);
+ALTER TABLE RESERVA ADD FOREIGN KEY(id_ejemplar) REFERENCES EJEMPLAR(id);
+ALTER TABLE OBJETIVOXEVENTO ADD FOREIGN KEY(id_evento) REFERENCES EVENTO(id);
+ALTER TABLE EVENTO ADD FOREIGN KEY(id_area) REFERENCES AREA(id);
+ALTER TABLE AREA ADD FOREIGN KEY(id_responsable) REFERENCES RESPONSABLE(id);
+ALTER TABLE AREA ADD FOREIGN KEY(id_piso) REFERENCES PISO(id);
+ALTER TABLE USUARIO ADD FOREIGN KEY(id_ocupacion) REFERENCES OCUPACION(id);
+ALTER TABLE USUARIO ADD FOREIGN KEY(id_institucion) REFERENCES INSTITUCION(id);
+ALTER TABLE EJEMPLAR ADD FOREIGN KEY(id_coleccion) REFERENCES COLECCION(id);
+ALTER TABLE EJEMPLAR ADD FOREIGN KEY(id_editorial) REFERENCES EDITORIAL(id);
+ALTER TABLE EJEMPLAR ADD FOREIGN KEY(id_formato) REFERENCES FORMATO(id);
+ALTER TABLE EJEMPLAR ADD FOREIGN KEY(id_idioma) REFERENCES IDIOMA(id);
+ALTER TABLE ETIQUETAXEJEMPLAR ADD FOREIGN KEY(id_ejemplar) REFERENCES EJEMPLAR(id);
+ALTER TABLE AUTORXEJEMPLAR ADD FOREIGN KEY(id_ejemplar) REFERENCES EJEMPLAR(id);
+ALTER TABLE PALABRAS_CLAVEXEJEMPLAR ADD FOREIGN KEY(id_ejemplar) REFERENCES EJEMPLAR(id);
+ALTER TABLE COLECCION ADD FOREIGN KEY(id_tipo) REFERENCES TIPO(id);
+ALTER TABLE COLECCION ADD FOREIGN KEY(id_genero) REFERENCES GENERO(id);
+
+INSERT INTO RESPONSABLE VALUES (1, 'Gerardo')
+INSERT INTO RESPONSABLE VALUES (2, 'Rodrigo')
+INSERT INTO RESPONSABLE VALUES (3, 'Kevin')
+INSERT INTO RESPONSABLE VALUES (4, 'Amilcar')
+
+INSERT INTO PISO VALUES (1, 1)
+INSERT INTO PISO VALUES (2, 2)
+INSERT INTO PISO VALUES (3, 3)
+INSERT INTO PISO VALUES (4, 4)
+
+INSERT INTO OCUPACION VALUES (1, 'Obrero')
+INSERT INTO OCUPACION VALUES (2, 'Estudiante')
+INSERT INTO OCUPACION VALUES (3, 'F�sico')
+INSERT INTO OCUPACION VALUES (4, 'Abogado')
+
+INSERT INTO INSTITUCION VALUES (1, 'UCA')
+INSERT INTO INSTITUCION VALUES (2, 'MINED')
+INSERT INTO INSTITUCION VALUES (3, 'UES')
+INSERT INTO INSTITUCION VALUES (4, 'Gov')
+
+INSERT INTO EDITORIAL VALUES (1, 'ESE Ediciones')
+INSERT INTO EDITORIAL VALUES (2, 'DC comics')
+INSERT INTO EDITORIAL VALUES (3, 'Kalina')
+INSERT INTO EDITORIAL VALUES (4, 'Laberinto')
+
+INSERT INTO FORMATO VALUES (1, 'F�sico')
+INSERT INTO FORMATO VALUES (2, 'Virtual')
+
+INSERT INTO IDIOMA VALUES (1, 'Espa�ol')
+INSERT INTO IDIOMA VALUES (2, 'Aleman')
+INSERT INTO IDIOMA VALUES (3, 'Ingles')
+INSERT INTO IDIOMA VALUES (4, 'Frances')
+
+INSERT INTO TIPO VALUES (1, 'Libros')
+INSERT INTO TIPO VALUES (2, 'Tesis')
+INSERT INTO TIPO VALUES (3, 'Comics')
+INSERT INTO TIPO VALUES (4, 'Poemas')
+
+INSERT INTO GENERO VALUES (1, 'Educativo')
+INSERT INTO GENERO VALUES (2, 'Comics')
+INSERT INTO GENERO VALUES (3, 'Recepcional')
+INSERT INTO GENERO VALUES (4, 'Romance')
+
+INSERT INTO AREA VALUES (1, 'Biblioteca infantil', 'Es para ni�os', 'De 7:00 a.m a 8:00 p.m', 1, 1)
+INSERT INTO AREA VALUES (2, 'Biblioteca infantil 2', 'Es para ni�os m�s grandes', 'De 7:00 a.m a 8:00 p.m', 2, 1)
+INSERT INTO AREA VALUES (3, 'Biblioteca entretenimento', 'Comics DC', 'De 7:00 a.m a 8:00 p.m', 3, 2)
+INSERT INTO AREA VALUES (4, 'Biblioteca entretenimiento 2', 'Comics Marvel', 'De 7:00 a.m a 8:00 p.m', 4, 2)
+INSERT INTO AREA VALUES (5, 'Biblioteca de tesis', 'Tesis bachillerato', 'De 7:00 a.m a 8:00 p.m', 4, 3)
+INSERT INTO AREA VALUES (6, 'Biblioteca de tesis 2', 'Tesis Universitarias', 'De 7:00 a.m a 8:00 p.m', 3, 3)
+INSERT INTO AREA VALUES (7, 'Biblioteca de literatura', 'Literatura grecolatina', 'De 7:00 a.m a 8:00 p.m', 2, 4)
+INSERT INTO AREA VALUES (8, 'Biblioteca de literatura 2', 'Literatura internacional', 'De 7:00 a.m a 8:00 p.m', 1, 4)
+INSERT INTO AREA VALUES (9, 'Salon l�dico', 'Salon Balet', '7:00 a.m a 8:00 p.m', 1, 1)
+INSERT INTO AREA VALUES (10, 'Salon l�dico 2', 'Salon m�sica', '7:00 a.m a 8:00 p.m', 2, 2)
+INSERT INTO AREA VALUES (11, 'Auditorium', 'No disponible', '7:00 a.m a 8:00 p.m', 3, 1)
+INSERT INTO AREA VALUES (12, 'Sala de proyecci�n', 'Peliculas infantiles', '7:00 a.m a 8:00 p.m', 4, 2)
+INSERT INTO AREA VALUES (13, 'Sala de proyecci�n 2', 'Congresos', '7:00 a.m a 8:00 p.m', 4, 3)
+INSERT INTO AREA VALUES (14, 'Sala de proyecci�n 3', 'Transmisi�n deportiva', '7:00 a.m a 8:00 p.m', 3, 4)
+INSERT INTO AREA VALUES (15, '�rea de computaci�n', 'Infantil', '7:00 a.m a 8:00 p.m', 2, 1)
+INSERT INTO AREA VALUES (16, '�rea de computaci�n 2', 'Infantil', '7:00 a.m a 8:00 p.m', 1, 1)
+INSERT INTO AREA VALUES (17, '�rea de computaci�n 3', 'Escolar', '7:00 a.m a 8:00 p.m', 1, 2)
+INSERT INTO AREA VALUES (18, '�rea de computaci�n 4', 'Escolar', '7:00 a.m a 8:00 p.m', 2, 2)
+INSERT INTO AREA VALUES (19, '�rea de computaci�n 5', 'Bachilleres', '7:00 a.m a 8:00 p.m', 3, 3)
+INSERT INTO AREA VALUES (20, '�rea de computaci�n 6', 'Bachilleres', '7:00 a.m a 8:00 p.m', 4, 3)
+INSERT INTO AREA VALUES (21, '�rea de computaci�n 7', 'Universitario', '7:00 a.m a 8:00 p.m', 4, 4)
+INSERT INTO AREA VALUES (22, '�rea de computaci�n 8', 'Universitario', '7:00 a.m a 8:00 p.m', 3, 4)
+INSERT INTO AREA VALUES (23, 'Sala de invesigaci�n', 'Qu�mica', '7:00 a.m a 8:00 p.m', 2, 4)
+INSERT INTO AREA VALUES (24, 'Sala de invesigaci�n', 'F�sica', '7:00 a.m a 8:00 p.m', 1, 4)
+INSERT INTO AREA VALUES (25, '�rea de promoci�n de inclusi�n', 'Infantil', '7:00 a.m a 8:00 p.m', 1, 1)
+INSERT INTO AREA VALUES (26, '�rea de promoci�n de inclusi�n 2', 'Adolescente', '7:00 a.m a 8:00 p.m', 2, 1)
+
+INSERT INTO EVENTO VALUES (1, 'Cuenta un Cuento', '30 personas', '15-01-2022', '12:00 p.m', '15-01-2022', '4:00 p.m', 1)
+INSERT INTO EVENTO VALUES (2, 'Fiesta de disfraces', '20 personas','30-04-2022', '8:00 a.m', '30-04-2022', '12:00 p.m', 3)
+INSERT INTO EVENTO VALUES (3, 'Feria de Ciencias', '40 personas', '11-10-2022', '9:00 a.m', '11-10-2022', '5:00 p.m', 5)
+INSERT INTO EVENTO VALUES (4, 'Aprendamos de la literatura', '15 personas', '09-12-2022', '2:00 p.m', '09-12-2022', '8:00 p.m', 7)
+
+INSERT INTO OBJETIVOXEVENTO VALUES (1, 'Fomentar la lectura en los ni�os', 1)
+INSERT INTO OBJETIVOXEVENTO VALUES (2, 'Fomentar la inclusi�n social', 2)
+INSERT INTO OBJETIVOXEVENTO VALUES (3, 'Fomentar la investigacion cientifica', 3)
+INSERT INTO OBJETIVOXEVENTO VALUES (4, 'Fomentar la lectura en adolescentes', 4)
+
+INSERT INTO USUARIO VALUES (1, 'Rene', 'Arboledas', '78905763', 'rene@gmail.com', 1, 1)
+INSERT INTO USUARIO VALUES (2, 'Erick', 'San Jacinto', '61478963', 'kev@gmail.com', 2, 2)
+INSERT INTO USUARIO VALUES (3, 'Rene', 'La Libertad', '75321458', 'rev@gmail.com', 3, 3)
+INSERT INTO USUARIO VALUES (4, 'Samuel', 'Soyapango', '66987541', 'Sam@gmail.com', 4, 4)
+
+INSERT INTO INGRESA VALUES ( 1, 1, '25-10-2022', '12:00 p.m')
+INSERT INTO INGRESA VALUES ( 1, 1, '26-10-2022', '01:00 p.m')
+INSERT INTO INGRESA VALUES (2, 1, '26-10-2022', '01:00 p.m')
+INSERT INTO INGRESA VALUES (3, 1, '27-10-2022', '02:00 p.m')
+INSERT INTO INGRESA VALUES (4, 2, '28-10-2022', '03:00 p.m')
+INSERT INTO INGRESA VALUES (5, 2, '29-10-2022', '04:00 p.m')
+INSERT INTO INGRESA VALUES (6, 2, '30-10-2022', '05:00 p.m')
+INSERT INTO INGRESA VALUES (7, 3, '31-10-2022', '06:00 p.m')
+INSERT INTO INGRESA VALUES (8, 3, '01-11-2022', '07:00 p.m')
+INSERT INTO INGRESA VALUES (19, 3, '02-11-2022', '12:00 p.m')
+INSERT INTO INGRESA VALUES (10, 4, '03-11-2022', '01:00 p.m')
+INSERT INTO INGRESA VALUES (11, 4, '04-11-2022', '02:00 p.m')
+INSERT INTO INGRESA VALUES (12, 4, '05-11-2022', '03:00 p.m')
+INSERT INTO INGRESA VALUES (13, 1, '06-11-2022', '04:00 p.m')
+INSERT INTO INGRESA VALUES (14, 1, '07-11-2022', '05:00 p.m')
+INSERT INTO INGRESA VALUES (15, 1, '08-11-2022', '06:00 p.m')
+INSERT INTO INGRESA VALUES (16, 2, '09-11-2022', '07:00 p.m')
+INSERT INTO INGRESA VALUES (17, 2, '10-11-2022', '12:00 p.m')
+INSERT INTO INGRESA VALUES (18, 2, '11-11-2022', '01:00 p.m')
+INSERT INTO INGRESA VALUES (19, 3, '12-11-2022', '02:00 p.m')
+INSERT INTO INGRESA VALUES (20, 3, '13-11-2022', '03:00 p.m')
+INSERT INTO INGRESA VALUES (21, 3, '14-11-2022', '04:00 p.m')
+INSERT INTO INGRESA VALUES (22, 4, '15-11-2022', '05:00 p.m')
+INSERT INTO INGRESA VALUES (23, 4, '16-11-2022', '06:00 p.m')
+INSERT INTO INGRESA VALUES (24, 4, '17-11-2022', '07:00 p.m')
+INSERT INTO INGRESA VALUES (25, 1, '18-11-2022', '12:00 p.m')
+INSERT INTO INGRESA VALUES (26, 1, '19-11-2022', '01:00 p.m')
+
+INSERT INTO ABANDONA VALUES (1, 1, '25-10-2022', '4:00 p.m')
+INSERT INTO ABANDONA VALUES (2, 1, '26-10-2022', '5:00 p.m')
+INSERT INTO ABANDONA VALUES (3, 1, '27-10-2022', '6:00 p.m')
+INSERT INTO ABANDONA VALUES (4, 2, '28-10-2022', '7:00 p.m')
+INSERT INTO ABANDONA VALUES (5, 2, '29-10-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (6, 2, '30-10-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (7, 3, '31-10-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (8, 3, '01-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (9, 3, '02-11-2022', '4:00 p.m')
+INSERT INTO ABANDONA VALUES (10, 4, '03-11-2022', '5:00 p.m')
+INSERT INTO ABANDONA VALUES (11, 4, '04-11-2022', '6:00 p.m')
+INSERT INTO ABANDONA VALUES (12, 4, '05-11-2022', '7:00 p.m')
+INSERT INTO ABANDONA VALUES (13, 1, '06-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (14, 1, '07-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (15, 1, '08-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (16, 2, '09-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (17, 2, '10-11-2022', '4:00 p.m')
+INSERT INTO ABANDONA VALUES (18, 2, '11-11-2022', '5:00 p.m')
+INSERT INTO ABANDONA VALUES (19, 3, '12-11-2022', '6:00 p.m')
+INSERT INTO ABANDONA VALUES (20, 3, '13-11-2022', '7:00 p.m')
+INSERT INTO ABANDONA VALUES (21, 3, '14-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (22, 4, '15-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (23, 4, '16-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (24, 4, '17-11-2022', '8:00 p.m')
+INSERT INTO ABANDONA VALUES (25, 1, '18-11-2022', '4:00 p.m')
+INSERT INTO ABANDONA VALUES (26, 1, '19-11-2022', '5:00 p.m')
+
+INSERT INTO COLECCION VALUES (1, 'Libros de Ciencias', 1, 1)
+INSERT INTO COLECCION VALUES (2, 'Comics', 2, 2)
+INSERT INTO COLECCION VALUES (3, 'Tesis universitarias', 3, 3)
+INSERT INTO COLECCION VALUES (4, 'Libros de literatura', 4, 4)
+
+INSERT INTO EJEMPLAR VALUES (1, 'Ciencias Naturales 8�', '10-01-2003', 1, 1, 1, 1)
+INSERT INTO EJEMPLAR VALUES (2, 'Flash', '01-09-2012', 2, 2, 2, 2)
+INSERT INTO EJEMPLAR VALUES (3, 'Economia en desarrollo', '10-10-2005', 3, 3, 2, 3)
+INSERT INTO EJEMPLAR VALUES (4, 'La Odisea', '10-01-2003', 4, 4, 1, 4)
+
+INSERT INTO ETIQUETAXEJEMPLAR VALUES (1, '120634', 1)
+INSERT INTO ETIQUETAXEJEMPLAR VALUES (2, '058994', 2)
+INSERT INTO ETIQUETAXEJEMPLAR VALUES (3, '410061', 3)
+INSERT INTO ETIQUETAXEJEMPLAR VALUES (4, '195230', 4)
+
+INSERT INTO AUTORXEJEMPLAR VALUES (1, 'ESE', 1)
+INSERT INTO AUTORXEJEMPLAR VALUES (2, 'Gardner Fox', 2)
+INSERT INTO AUTORXEJEMPLAR VALUES (3, 'Julio Rodriguez', 3)
+INSERT INTO AUTORXEJEMPLAR VALUES (4, 'HOMERO', 4)
+
+INSERT INTO PALABRAS_CLAVEXEJEMPLAR VALUES (1, 'ADN', 1)
+INSERT INTO PALABRAS_CLAVEXEJEMPLAR VALUES (2, 'rapido', 1)
+INSERT INTO PALABRAS_CLAVEXEJEMPLAR VALUES (3, 'inflaci[on', 1)
+INSERT INTO PALABRAS_CLAVEXEJEMPLAR VALUES (4, 'Odiseo', 1)

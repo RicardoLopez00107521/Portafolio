@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.avanzo.avanzotestsimulator.ui.register.viewmodel.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app"
+        tools:context=".ui.ranking.RankingFragment">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="17dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="Back Button"
+            android:src="@drawable/baseline_keyboard_backspace_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_gap"
+            android:text="@string/back"
+            android:textSize="20dp"
+            style="@style/GilroyFontBold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/backButton"
+            app:layout_constraintTop_toTopOf="@+id/backButton"
+            app:layout_constraintBottom_toBottomOf="@+id/backButton" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backButton">
+
+            <TextView
+                android:id="@+id/profileText"
+                style="@style/GilroyFontBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textSize="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:text="@={viewmodel.firstname}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileText" />
+
+            <EditText
+                android:id="@+id/editTextLastName"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/last_name"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:text="@={viewmodel.lastname}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/baseline_email_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/hint_email_login"
+                android:inputType="textEmailAddress"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:text="@={viewmodel.email}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/hint_password_login"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:text="@={viewmodel.password}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+            <EditText
+                android:id="@+id/editTextPasswordConfirmation"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:text="@={viewmodel.password_confirmation}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+            <CheckBox
+                android:id="@+id/acceptCheckbox"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_gap"
+                android:text="@string/terms"
+                android:textSize="13dp"
+                android:buttonTint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPasswordConfirmation" />
+
+
+            <Button
+                android:id="@+id/registerButton"
+                style="@style/GilroyFontBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border_radius"
+                android:onClick="@{() -> viewmodel.onRegister()}"
+                android:text="@string/create_account_login"
+                android:textAllCaps="false"
+                android:padding="13dp"
+                android:textColor="@color/main"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/acceptCheckbox" />
+
+            <TextView
+                android:id="@+id/textLogIn"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/info_register"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+
+            <TextView
+                android:id="@+id/logIn"
+                style="@style/GilroyFontBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_gap"
+                android:text="@string/submit_login"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textLogIn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

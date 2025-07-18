@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name = "viewmodel"
+            type = "com.avanzo.avanzotestsimulator.ui.home.viewmodel.HomeViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app"
+        >
+
+        <ImageButton
+            android:id="@+id/userButton"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="@dimen/medium_gap"
+            android:layout_marginEnd="@dimen/medium_gap"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="User button"
+            android:src="@drawable/user_ic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/logoAvanzo"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="@dimen/medium_gap"
+            android:src="@drawable/logo_app_white"
+            app:layout_constraintTop_toTopOf="@+id/userButton"
+            app:layout_constraintBottom_toBottomOf="@+id/userButton"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_text"
+            android:textSize="17dp"
+            style="@style/GilroyFontBold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userButton" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bg"
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.722"
+            android:background="@drawable/background_with_border"
+            android:layout_marginBottom="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:context=".ui.home.HomeFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/line"
+                android:layout_width="80dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="@dimen/small_gap"
+                android:background="@drawable/bg_app"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/main"
+                android:visibility="visible"
+                android:layout_marginBottom="@dimen/big_gap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Recycler_view"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/small_gap"
+                android:layout_height="0dp"
+                app:layout_constraintBaseline_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

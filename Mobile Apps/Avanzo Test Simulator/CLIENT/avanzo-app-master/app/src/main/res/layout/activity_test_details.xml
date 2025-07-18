@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app"
+        tools:context=".ui.home.TestDetailsActivity">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="17dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="Back Button"
+            android:src="@drawable/baseline_keyboard_backspace_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detalleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_gap"
+            android:text="@string/back"
+            android:textSize="20dp"
+            style="@style/GilroyFontBold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/backButton"
+            app:layout_constraintTop_toTopOf="@+id/backButton"
+            app:layout_constraintBottom_toBottomOf="@+id/backButton" />
+
+        <TextView
+            android:id="@+id/materiaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/details_text"
+            android:layout_marginStart="@dimen/medium_gap"
+            android:textSize="20dp"
+            style="@style/GilroyFontBold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/pointsIcon"
+            app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+        <ImageView
+            android:id="@+id/pointsIcon"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/baseline_star_24"
+            app:layout_constraintBottom_toTopOf="@id/bg"
+            app:layout_constraintStart_toStartOf="@+id/materiaText"
+            app:layout_constraintTop_toBottomOf="@+id/materiaText"/>
+
+        <TextView
+            android:id="@+id/puntosText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_points"
+            android:textSize="15dp"
+            style="@style/GilroyFontLight"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/pointsIcon"
+            app:layout_constraintTop_toTopOf="@+id/pointsIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/pointsIcon"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bg"
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.762"
+            android:background="@drawable/background_with_border"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:context=".ui.home.HomeFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/line"
+                android:layout_width="80dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="@dimen/small_gap"
+                android:background="@drawable/bg_app"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/instruction1Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_gap"
+                android:layout_marginStart="@dimen/medium_gap"
+                android:text="@string/about_test"
+                android:textSize="18dp"
+                style="@style/GilroyFontBold"
+                android:textColor="@color/black_main"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line" />
+
+            <ImageView
+                android:id="@+id/QuestionsImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/small_gap"
+                android:src="@drawable/questions_ic"
+                app:layout_constraintStart_toStartOf="@+id/instruction1Text"
+                app:layout_constraintTop_toBottomOf="@+id/instruction1Text" />
+
+            <TextView
+                android:id="@+id/InstructionQuestionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/info1_test"
+                android:layout_marginLeft="@dimen/small_gap"
+                style="@style/GilroyFontBold"
+                android:textStyle="bold"
+                android:textColor="@color/black_main"
+                android:textSize="17dp"
+                app:layout_constraintStart_toEndOf="@+id/QuestionsImage"
+                app:layout_constraintBottom_toTopOf="@+id/DetailsQuestionsText"
+                app:layout_constraintTop_toTopOf="@+id/QuestionsImage" />
+
+            <TextView
+                android:id="@+id/DetailsQuestionsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sub_info1_test"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/InstructionQuestionsText"
+                app:layout_constraintTop_toBottomOf="@+id/InstructionQuestionsText"
+                app:layout_constraintBottom_toBottomOf="@+id/QuestionsImage" />
+
+            <ImageView
+                android:id="@+id/MinutesImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/small_gap"
+                android:src="@drawable/clock_ic"
+                app:layout_constraintStart_toStartOf="@+id/instruction1Text"
+                app:layout_constraintTop_toBottomOf="@+id/QuestionsImage" />
+
+            <TextView
+                android:id="@+id/InstructionMinutesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_default"
+                android:layout_marginLeft="@dimen/small_gap"
+                style="@style/GilroyFontBold"
+                android:textStyle="bold"
+                android:textColor="@color/black_main"
+                android:textSize="17dp"
+                app:layout_constraintStart_toEndOf="@+id/MinutesImage"
+                app:layout_constraintBottom_toTopOf="@+id/DetailsMinutesext"
+                app:layout_constraintTop_toTopOf="@+id/MinutesImage" />
+
+            <TextView
+                android:id="@+id/DetailsMinutesext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sub2_info_test"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/InstructionMinutesText"
+                app:layout_constraintTop_toBottomOf="@+id/InstructionMinutesText"
+                app:layout_constraintBottom_toBottomOf="@+id/MinutesImage" />
+
+            <ImageView
+                android:id="@+id/StarsImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/small_gap"
+                android:src="@drawable/stars_ic"
+                app:layout_constraintStart_toStartOf="@+id/instruction1Text"
+                app:layout_constraintTop_toBottomOf="@+id/MinutesImage" />
+
+            <TextView
+                android:id="@+id/InstructionStarsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/info3_test"
+                android:layout_marginLeft="@dimen/small_gap"
+                style="@style/GilroyFontBold"
+                android:textStyle="bold"
+                android:textColor="@color/black_main"
+                android:textSize="17dp"
+                app:layout_constraintStart_toEndOf="@+id/StarsImage"
+                app:layout_constraintBottom_toTopOf="@+id/DetailsStarsText"
+                app:layout_constraintTop_toTopOf="@+id/StarsImage" />
+
+            <TextView
+                android:id="@+id/DetailsStarsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sub3_info_test"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/InstructionStarsText"
+                app:layout_constraintTop_toBottomOf="@+id/InstructionStarsText"
+                app:layout_constraintBottom_toBottomOf="@+id/StarsImage" />
+
+            <TextView
+                android:id="@+id/instruction2Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_gap"
+                android:text="@string/inst_title"
+                android:textSize="18dp"
+                style="@style/GilroyFontBold"
+                android:textColor="@color/black_main"
+                app:layout_constraintStart_toStartOf="@+id/StarsImage"
+                app:layout_constraintTop_toBottomOf="@+id/StarsImage" />
+
+            <TextView
+                android:id="@+id/instruction2.1Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_gap"
+                android:layout_marginStart="@dimen/medium_gap"
+                android:layout_marginEnd="@dimen/medium_gap"
+                style="@style/GilroyFontLight"
+                android:text="@string/inst_1"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/instruction2Text"
+                app:layout_constraintTop_toBottomOf="@+id/instruction2Text" />
+
+            <TextView
+                android:id="@+id/instruction2.2Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_gap"
+                android:layout_marginEnd="@dimen/medium_gap"
+                android:layout_marginTop="@dimen/small_gap"
+                android:text="@string/inst_2"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/instruction2.1Text"
+                app:layout_constraintTop_toBottomOf="@+id/instruction2.1Text" />
+
+            <TextView
+                android:id="@+id/instruction2.3Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_gap"
+                android:layout_marginEnd="@dimen/medium_gap"
+                android:layout_marginTop="@dimen/small_gap"
+                android:text="@string/inst_3"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                style="@style/GilroyFontLight"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/instruction2.2Text"
+                app:layout_constraintTop_toBottomOf="@+id/instruction2.2Text" />
+
+            <Button
+                android:id="@+id/TestButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_gap"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/button_background"
+                android:text="@string/begin_test"
+                android:textAllCaps="false"
+                android:padding="13dp"
+                android:textSize="20dp"
+                style="@style/GilroyFontBold"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instruction2.3Text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
